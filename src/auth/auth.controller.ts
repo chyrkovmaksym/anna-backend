@@ -9,6 +9,8 @@ import {
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Public } from './auth.decorator';
+import { SignupUserDto } from './dto/signup-user.dto';
+import { LoginUserDto } from './dto/login-user.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -17,8 +19,8 @@ export class AuthController {
   @Public()
   @HttpCode(HttpStatus.OK)
   @Post('login')
-  signIn(@Body() signInDto: Record<string, any>) {
-    return this.authService.signIn(signInDto.email, signInDto.password);
+  signIn(@Body() signInDto: LoginUserDto) {
+    return this.authService.signIn(signInDto);
   }
 
   @Public()
@@ -26,12 +28,7 @@ export class AuthController {
   @Post('signup')
   signup(
     @Body()
-    signUpDto: {
-      email: string;
-      password: string;
-      firstName: string;
-      lastName: string;
-    },
+    signUpDto: SignupUserDto,
   ) {
     return this.authService.signUp(signUpDto);
   }
