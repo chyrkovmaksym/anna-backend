@@ -1,12 +1,4 @@
-import {
-  IsArray,
-  IsEmail,
-  IsNotEmpty,
-  IsOptional,
-  IsString,
-  MinLength,
-} from 'class-validator';
-import { Role } from 'src/enums/role.enum';
+import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
 
 export class SignupUserDto {
   @IsEmail()
@@ -23,8 +15,4 @@ export class SignupUserDto {
   @IsString()
   @IsNotEmpty()
   lastName: string;
-
-  @IsOptional()
-  @IsArray()
-  roles?: Role[];
 }
